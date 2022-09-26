@@ -1,5 +1,8 @@
 from cProfile import label
+from ctypes.wintypes import RGB
+from hashlib import new
 from tkinter import *
+from turtle import width
 from PIL import Image
 import PIL.Image
 from PIL import ImageTk
@@ -9,7 +12,7 @@ from array import *
 root = Tk()
 root.title("JANJI GA NYESEL MASUK TEKNIK!")
 
-root.geometry("400x400")
+root.geometry("350x350")
 
 def koordinat():
     global arr, w, h, rvalue, gvalue, bvalue,x, y
@@ -20,11 +23,15 @@ def koordinat():
     
     file_path = tkinter.filedialog.askopenfilename()
     pics = (PIL.Image.open(file_path))
+    pics = pics.convert('RGB')
+    sizing = pics.resize((400,400))
 
-    photo = PIL.ImageTk.PhotoImage(PIL.Image.open(file_path))
+    photo = PIL.ImageTk.PhotoImage(sizing)
     my_label = Label(image=photo)
     my_label.image = photo
     my_label.grid(row=2, column=2)
+    
+    # blank = PIL.Image.new(mode="RGB", size=(100,100))
     
     # pics1 = PIL.ImageTk.PhotoImage(PIL.Image.OPEN(file_path))
     w, h = pics.size
@@ -34,6 +41,8 @@ def koordinat():
             rvalue = pics.getpixel((x,y))[0]
             gvalue = pics.getpixel((x,y))[1]
             bvalue = pics.getpixel((x,y))[2]
+#           nama_variabel = nama_vp.method(koordinat)[indeks]
+            
             arr.append([x, y, rvalue, gvalue, bvalue])
             j += 1
             y += 1
@@ -55,7 +64,8 @@ def hasil_copy():
         
         load[x,y] = (rvalue, gvalue, bvalue)
     
-    photo2 = PIL.ImageTk.PhotoImage(pics2)
+    sizing2 = pics2.resize((400,400))
+    photo2 = PIL.ImageTk.PhotoImage(sizing2)
     my_label2 = Label(image=photo2)
     my_label2.image = photo2
     my_label2.grid(row=2, column=5)
@@ -91,8 +101,9 @@ def sel(x):
             for cr in arr:
                 x, y, rvalue, gvalue, bvalue = cr
                 load2[x,y] = (rvalue, gvalue, 0)
-            
-    photo3 = PIL.ImageTk.PhotoImage(pics3)
+    
+    sizing3 = pics3.resize((100,300))  
+    photo3 = PIL.ImageTk.PhotoImage(sizing3)
     my_label2 = Label(image=photo3)
     my_label2.image = photo3
     my_label2.grid(row=2, column=6)
@@ -127,11 +138,9 @@ label = Label(root)
 label.grid(row=3, column=7)    
 
 tombol = Button(root, text='HAI CANTIK', command=koordinat)
-
 tombol.grid(row=3, column=2)
 
 tombol2 = Button(root, text="pecik gen", command=hasil_copy)
-
 tombol2.grid(row=3, column=5)
 
 root.mainloop()
