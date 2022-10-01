@@ -123,12 +123,14 @@ def sel(x):
     my_label2.place(x= 550, y=100)
 
 def save():
-    pics3.save(f"folder_fix/gambar_{file_name}_{name}.png")
+    pics3.save(f"folder_fix/Hasil/{file_name}_{name}.png")
+    
+def exitl():
+    root.destroy()
                      
 var = IntVar()
 
 blank()
-
 
 R1 = Radiobutton(root, text="RED", variable=var, value=1, height=1, width=6, command= lambda: sel(1))
 R1.place(x = 550,y = 320)
@@ -160,7 +162,8 @@ tombol3.place(x = 550,y = 390)
 tombol4 = Button(root, text="RESET", command=blank, height=1, width=28)
 tombol4.place(x = 550,y = 420)
 
-
+tombol5 = Button(root, text="EXIT", command=exitl, height=1, width=28)
+tombol5.place(x = 550,y = 450)
 
 root.mainloop()
 #radiobox
