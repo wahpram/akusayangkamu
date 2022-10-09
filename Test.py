@@ -194,6 +194,7 @@ tombol2 = Button(root, text="pecik gen", command=hasil_copy)
 tombol2.grid(row=3, column=5)
 
 root.geometry('1300x400+33+100')
+# tes
 
 root.mainloop()
 #radiobox
