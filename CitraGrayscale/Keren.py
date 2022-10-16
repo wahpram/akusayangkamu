@@ -1,3 +1,4 @@
+#akusayangkamu
 from ctypes.wintypes import RGB
 from tkinter import *
 import tkinter as tk
